@@ -31,10 +31,13 @@
  *   GCC linker script for CC2538.
  */
 
+CCA_SIZE = 0x2C;
+FLASH_SIZE = 256K; 
+ 
 MEMORY
 {
-  FLASH (rx) :           ORIGIN = 0x00200000,            LENGTH = 0x0007FFD4
-  FLASH_CCA (rx) :       ORIGIN = 0x0027FFD4,            LENGTH = 0x2C
+  FLASH (rx) :           ORIGIN = 0x00200000,            LENGTH = (FLASH_SIZE - CCA_SIZE)
+  FLASH_CCA (rx) :       ORIGIN = 0x00200000 + (FLASH_SIZE - CCA_SIZE),            LENGTH = CCA_SIZE
   SRAM (rwx) :           ORIGIN = 0x20000000,            LENGTH = 32K
 }
 
